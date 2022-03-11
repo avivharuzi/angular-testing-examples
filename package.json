@@ -13,6 +13,8 @@
     "prerender": "nx prerender",
     "e2e": "nx e2e angular-testing-examples-e2e",
     "test": "nx test",
+    "test:all": "nx run-many --target test --all",
+    "test:all:coverage": "nx run-many --target test --all --coverage",
     "lint": "nx lint",
     "affected:build": "nx affected:build",
     "affected:e2e": "nx affected:e2e",
