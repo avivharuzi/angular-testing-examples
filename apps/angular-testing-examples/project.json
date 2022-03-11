@@ -1,0 +1,162 @@
+{
+  "projectType": "application",
+  "root": "apps/angular-testing-examples",
+  "sourceRoot": "apps/angular-testing-examples/src",
+  "prefix": "ate",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/angular-testing-examples/browser",
+        "index": "apps/angular-testing-examples/src/index.html",
+        "main": "apps/angular-testing-examples/src/main.ts",
+        "polyfills": "apps/angular-testing-examples/src/polyfills.ts",
+        "tsConfig": "apps/angular-testing-examples/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/angular-testing-examples/src/favicon.ico",
+          "apps/angular-testing-examples/src/assets",
+          "apps/angular-testing-examples/src/manifest.webmanifest",
+          "apps/angular-testing-examples/src/robots.txt"
+        ],
+        "styles": ["apps/angular-testing-examples/src/styles.scss"],
+        "scripts": [],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/angular-testing-examples/ngsw-config.json"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/angular-testing-examples/src/environments/environment.ts",
+              "with": "apps/angular-testing-examples/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "angular-testing-examples:build:production"
+        },
+        "development": {
+          "browserTarget": "angular-testing-examples:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "angular-testing-examples:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/angular-testing-examples/src/**/*.ts",
+          "apps/angular-testing-examples/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/angular-testing-examples"],
+      "options": {
+        "jestConfig": "apps/angular-testing-examples/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "options": {
+        "outputPath": "dist/apps/angular-testing-examples/server",
+        "main": "apps/angular-testing-examples/server.ts",
+        "tsConfig": "apps/angular-testing-examples/tsconfig.server.json",
+        "inlineStyleLanguage": "scss"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/angular-testing-examples/src/environments/environment.ts",
+              "with": "apps/angular-testing-examples/src/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "executor": "@nguniversal/builders:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "angular-testing-examples:build:development",
+          "serverTarget": "angular-testing-examples:server:development"
+        },
+        "production": {
+          "browserTarget": "angular-testing-examples:build:production",
+          "serverTarget": "angular-testing-examples:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "executor": "@nguniversal/builders:prerender",
+      "options": {
+        "routes": ["/"]
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "angular-testing-examples:build:production",
+          "serverTarget": "angular-testing-examples:server:production"
+        },
+        "development": {
+          "browserTarget": "angular-testing-examples:build:development",
+          "serverTarget": "angular-testing-examples:server:development"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  },
+  "tags": []
+}

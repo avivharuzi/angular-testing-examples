@@ -1,0 +1,28 @@
+{
+  "root": "apps/angular-testing-examples-e2e",
+  "sourceRoot": "apps/angular-testing-examples-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/angular-testing-examples-e2e/cypress.json",
+        "devServerTarget": "angular-testing-examples:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "angular-testing-examples:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/angular-testing-examples-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["angular-testing-examples"]
+}
