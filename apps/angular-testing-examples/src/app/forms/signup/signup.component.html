@@ -1,0 +1,65 @@
+<form data-test-id="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <h3>Choose your plan</h3>
+    <input
+      class="plan-radio"
+      name="plan"
+      data-test-id="plan-personal"
+      type="radio"
+      value="personal"
+      formControlName="plan"
+    />
+    <input
+      name="plan"
+      data-test-id="plan-business"
+      type="radio"
+      value="business"
+      formControlName="plan"
+    />
+  </div>
+
+  <div>
+    <h3>Email</h3>
+    <input data-test-id="email" type="email" formControlName="email" />
+  </div>
+
+  <div>
+    <h3>Password</h3>
+    <input data-test-id="password" type="password" formControlName="password" />
+  </div>
+
+  <div formGroupName="address">
+    <div>
+      <h3>Full Address</h3>
+      <input data-test-id="address-name" type="text" formControlName="name" />
+    </div>
+
+    <div>
+      <h3>Country</h3>
+      <select data-test-id="address-country" formControlName="country">
+        <option>Israel</option>
+        <option>USA</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <h3>Terms and Services</h3>
+    <input
+      data-test-id="terms-and-services"
+      type="checkbox"
+      formControlName="termsAndServices"
+    />
+  </div>
+
+  <p *ngIf="submitStatus === 'success'" data-test-id="status">
+    <strong>Signup success</strong>
+  </p>
+  <p *ngIf="submitStatus === 'error'" data-test-id="status">
+    <strong>Signup error</strong>
+  </p>
+
+  <button data-test-id="submit" type="submit" [attr.disabled]="form.invalid">
+    Sign up
+  </button>
+</form>
