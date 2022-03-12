@@ -1,0 +1,17 @@
+<div>
+  <span data-test-id="count">{{ count }}</span>
+
+  <button data-test-id="increment-button" (click)="increment()">
+    Increment
+  </button>
+
+  <button data-test-id="decrement-button" (click)="decrement()">
+    Decrement
+  </button>
+
+  <input #resetInput data-test-id="reset-input" type="text" [value]="count" />
+
+  <button data-test-id="reset-button" (click)="reset(resetInput.value)">
+    Reset
+  </button>
+</div>
