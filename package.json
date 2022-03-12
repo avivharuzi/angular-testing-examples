@@ -76,6 +76,7 @@
     "jest": "27.2.3",
     "jest-preset-angular": "11.0.0",
     "lint-staged": "^12.1.7",
+    "ng-mocks": "^13.1.0",
     "prettier": "^2.3.1",
     "prettier-plugin-organize-attributes": "^0.0.4",
     "prettier-plugin-rational-order": "^1.0.3",
